@@ -117,7 +117,7 @@ def do_git(line):
     def git_add(args):
         if len(args) > 0:
             repo = _get_repo()
-            args = [os.path.join(os.path.relpath(repo.path, '.'),x) for x in args]
+            #args = [os.path.join(os.path.relpath('.', repo.path),x) for x in args]
             #repo.stage(args)
             porcelain.add(repo.repo, args)
         else:
@@ -126,7 +126,7 @@ def do_git(line):
     def git_rm(args):
         if len(args) > 0:
             repo = _get_repo()
-            args = [os.path.join(os.path.relpath(repo.path, '.'),x) for x in args]
+            #args = [os.path.join(os.path.relpath('.', repo.path),x) for x in args]
             #repo.rm(args)
             porcelain.rm(repo.repo, args)
         else:
