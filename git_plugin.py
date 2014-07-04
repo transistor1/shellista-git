@@ -241,11 +241,11 @@ def do_git(line):
 
             opener = auth_urllib2_opener(None, result.url, user, pw)
 
-            print porcelain.push(repo.repo, result.url, branch_name, opener=opener)
+            porcelain.push(repo.repo, result.url, branch_name, opener=opener)
             keychain.set_password(keychainservice, user, pw)
 
         else:
-            print porcelain.push(repo.repo, result.url, branch_name)
+            porcelain.push(repo.repo, result.url, branch_name)
 
     def git_modified(args):
         repo = _get_repo()
