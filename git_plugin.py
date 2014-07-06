@@ -26,22 +26,10 @@ shellista = sys.modules['__main__']
 
 SAVE_PASSWORDS = shellista.Shellista.settings.get('save_passwords', True)
 
-__DEBUG__ = False
-
-if __DEBUG__:
-
-    base_url = 'file://' + os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))) + '/shellista-deps'
-    DULWICH_URL = base_url + '/dulwich.tar.gz#module_name=dulwich&module_path=dulwich-master/dulwich&move_to=./local-modules'
-    GITTLE_URL = base_url + '/gittle.tar.gz#module_name=gittle&module_path=gittle-*/gittle&move_to=./local-modules'
-    FUNKY_URL = base_url + '/funky.tar.gz#module_name=funky&module_path=*funky-*/funky&move_to=./local-modules'
-    MIMER_URL = base_url + '/mimer.tar.gz#module_name=mimer&module_path=*mimer-*/mimer&move_to=./local-modules'
-
-else:
-    #PIPISTA_URL='https://gist.githubusercontent.com/transistor1/0ea245e666189b3e675a/raw/23a23e229d6c279be3bc380c18c22fc2de24ef17/pipista.py#module_name=pipista&module_path=pipista.py&move_to=local-modules'
-    DULWICH_URL='https://github.com/transistor1/dulwich/archive/master.tar.gz#module_name=dulwich&module_path=dulwich-master/dulwich&move_to=local-modules'
-    GITTLE_URL='https://github.com/FriendCode/gittle/archive/522ce011851aee28fd6bb11b502978c9352fd137.tar.gz#module_name=gittle&module_path=gittle-*/gittle&move_to=local-modules'
-    FUNKY_URL='https://github.com/FriendCode/funky/tarball/e89cb2ce4374bf2069c7f669e52e046f63757241#module_name=funky&module_path=Friend*/funky&move_to=local-modules&save_as=funky.tar.gz'
-    MIMER_URL='https://github.com/FriendCode/mimer/tarball/a812e5f631b9b5c969df5a2ea84b635490a96ced#module_name=mimer&module_path=Friend*/mimer&move_to=local-modules&save_as=mimer.tar.gz'
+DULWICH_URL='https://github.com/transistor1/dulwich/archive/master.tar.gz#module_name=dulwich&module_path=dulwich-master/dulwich&move_to=local-modules'
+GITTLE_URL='https://github.com/FriendCode/gittle/archive/522ce011851aee28fd6bb11b502978c9352fd137.tar.gz#module_name=gittle&module_path=gittle-*/gittle&move_to=local-modules'
+FUNKY_URL='https://github.com/FriendCode/funky/tarball/e89cb2ce4374bf2069c7f669e52e046f63757241#module_name=funky&module_path=Friend*/funky&move_to=local-modules&save_as=funky.tar.gz'
+MIMER_URL='https://github.com/FriendCode/mimer/tarball/a812e5f631b9b5c969df5a2ea84b635490a96ced#module_name=mimer&module_path=Friend*/mimer&move_to=local-modules&save_as=mimer.tar.gz'
 
 def _progress(tot):
     print 'Downloaded {0} bytes'.format(tot)
