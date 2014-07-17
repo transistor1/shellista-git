@@ -118,6 +118,7 @@ def do_git(line):
     def git_rm(args):
         if len(args) > 0:
             repo = _get_repo()
+            cwd = os.getcwd()
             args = [os.path.join(os.path.relpath(cwd, repo.path), x)
                         if not os.path.samefile(cwd, repo.path) else x for x in args]
             for file in args:
