@@ -19,7 +19,10 @@ try:
 except:
     from ... tools import ios_console as console
 
-from ... tools import ios_keychain as keychain
+try:
+    import keychain
+except:
+    from ... tools import ios_keychain as keychain
 
 
 shellista = sys.modules['__main__']
