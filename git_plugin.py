@@ -267,14 +267,6 @@ def do_git(line):
         try:
             repo = _get_repo()
             porcelain.log(repo.repo, max_entries=results.max_entries,format=results.format,outstream=results.output)
-            '''
-            if results.output:
-                f = open(results.output,'w')
-                porcelain.log(repo.repo, max_entries=int(args[0]) if len(args)==1 else None,format=results.format,outstream=results.output)
-                f.close()
-            else:
-                porcelain.log(repo.repo, max_entries=int(args[0]) if len(args)==1 else None,format=results.format)
-            '''''
         except ValueError:
             print command_help['log']
 
@@ -330,7 +322,7 @@ def do_git(line):
     ,'commit': 'git commit <message> <name> <email> - commit staged files'
     ,'clone': 'git clone <url> [path] - clone a remote repository'
     ,'modified': 'git modified - show what files have been modified'
-    ,'log': 'git log -\n\t[-l|--length  numner_of _results]\n\t[-f|--format format string can use {message},{author},{email}]\n\t[-o|--output]  file_name'
+    ,'log': 'git log - Options:\n\t[-l|--length  numner_of _results]\n\t[-f|--format format string can use {message},{author},{author_email},{committer},{committer_email},{merge},{commit}]\n\t[-o|--output]  file_name'
     ,'push': 'git push [http(s)://<remote repo>] [-u username[:password]] - push changes back to remote'
     ,'pull': 'git pull [http(s)://<remote repo>] - pull changes from a remote repository'
     ,'checkout': 'git checkout <branch> - check out a particular branch in the Git tree'
