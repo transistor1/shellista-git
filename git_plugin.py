@@ -245,14 +245,31 @@ def do_git(line):
             print mod_file
 
     def git_log(args):
-        if len(args) <= 1:
-            try:
-                repo = _get_repo()
-                porcelain.log(repo.repo, max_entries=int(args[0]) if len(args)==1 else None)
-            except ValueError:
-                print command_help['log']
-        else:
+        parser = argparse.ArgumentParser(description='git log arg parser')
+        parser.add_argument('-f','--format',
+                            action='store',
+                            dest='format',
+                            default=False)
+        parser.add_argument('-o','--output',
+                            action='store',
+                            dest='output',
+                            type=argparse.FileType('w'),
+                            default=sys.stdout)
+                            
+        parser.add_argument('-l','--length',
+                            action='store',
+                            type=int,
+                            dest='max_entries',
+                            default=None)
+        
+        results = parser.parse_args(args)
+    
+        try:
+            repo = _get_repo()
+            porcelain.log(repo.repo, max_entries=results.max_entries,format=results.format,outstream=results.output)
+        except ValueError:
             print command_help['log']
+
 
 
     def git_checkout(args):
@@ -305,7 +322,7 @@ def do_git(line):
     ,'commit': 'git commit <message> <name> <email> - commit staged files'
     ,'clone': 'git clone <url> [path] - clone a remote repository'
     ,'modified': 'git modified - show what files have been modified'
-    ,'log': 'git log [number of changes to show] - show a full log of changes'
+    ,'log': 'git log - Options:\n\t[-l|--length  numner_of _results]\n\t[-f|--format format string can use {message},{author},{author_email},{committer},{committer_email},{merge},{commit}]\n\t[-o|--output]  file_name'
     ,'push': 'git push [http(s)://<remote repo>] [-u username[:password]] - push changes back to remote'
     ,'pull': 'git pull [http(s)://<remote repo>] - pull changes from a remote repository'
     ,'checkout': 'git checkout <branch> - check out a particular branch in the Git tree'
